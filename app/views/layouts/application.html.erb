@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;"/>
+    <meta name="description" content="Lets arrange">
+    <meta name="author" content="Lets arrange">
+    <meta name="rating" content="general">
+
+    <title><%= full_title(yield(:title)) %></title>
+
+    <%= stylesheet_link_tag    "application", media: "all" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+
+    <%= render 'layouts/plugins' %>
+  </head>
+
+  <body>
+
+    <%= render 'layouts/menubar' %>
+
+    <div id="<%= 'content' if current_user %>" style="padding-top: 15px;">
+
+      <div id="main_container" class="container <%= yield(:classes_for_container) if content_for(:classes_for_container) %>">
+
+        <%= render 'layouts/messages' unless current_page?(new_request_path) %>
+
+        <%= yield %>
+
+        <%= yield(:modal) if content_for?(:modal) %>
+
+        <div class="modal fade" id="aux_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content"></div>
+          </div>
+        </div>
+
+        <%= render "layouts/footer" %>
+      </div><!-- /.container -->
+    </div>
+
+    <div id="loading" style="display:none">
+      <div id="loading_image">
+        <img src="<%= image_path('ajax-loader.gif') %>" alt="loading" width="32" height="32" />
+      </div>
+    </div>
+  </body>
+</html>

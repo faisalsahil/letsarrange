@@ -1,0 +1,40 @@
+<div id="sign_in_form_container">
+  <%= simple_form_for(resource,
+                      as: resource_name,
+                      url: session_path(resource_name),
+                      html: { role: 'form', class: 'form-horizontal' },
+                      remote: true) do |f| %>
+    <%= f.input :in_modal, as: :hidden, input_html: { value: 1 } if @in_modal || local_assigns[:in_modal] %>
+
+    <%= conditional_tag(:div, local_assigns[:in_modal], class: 'modal-body') do %>
+      <div class="form-inputs error">
+        <p><%= resource.errors_sentence %></p>
+
+        <div class="form-group">
+          <div class="col-xs-12 field_container">
+            <%= f.input :login,
+                        required: false,
+                        label: false,
+                        input_html: { autocapitalize: "off", autocorrect: "off", class: 'form-control' },
+                        placeholder: 'User ID (e.g. jamieblack72)',
+                        autofocus: true %>
+          </div>
+        </div>
+
+        <%= render 'devise/shared/password', f: f %>
+
+        <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+      </div>
+    <% end %>
+    <%= conditional_tag(:div, local_assigns[:in_modal], class: 'modal-footer') do %>
+      <div class="form-actions">
+        <%= f.button :submit, "Sign in", class: "btn btn-lg btn-default btn-block submit" %>
+      </div>
+      <div class="signin-links">
+        <%= link_to 'Forgot password?', new_user_password_path, class: 'btn btn-block btn-primary' %>
+        <%= link_to 'Go to sign up', 'javascript:void(0)', id: 'signup_link', class: 'btn btn-block btn-primary' %>
+        <%= link_to 'Back to home', 'javascript:void(0)', id: 'back_from_signin', class: 'btn btn-block btn-primary' unless local_assigns[:in_modal] %>
+      </div>
+    <% end %>
+  <% end %>
+</div>

@@ -1,0 +1,12 @@
+<% provide(:title, "Users at #{@organization.name}") %>
+<% content_for :navbar do %>
+  <h1 class="larger-header">Users at <%= @organization.name %></h1>
+<% end %>
+
+<div id="organization_users">
+  <%= render partial: 'organization_user', collection: @organization_users %>
+
+  <%= link_to "Link new user", new_organization_user_path(@organization), class: "btn btn-success" %>
+  <%= link_to "Back to organizations", organizations_path, class: "btn btn-success" %>
+</div>
+

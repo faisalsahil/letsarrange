@@ -1,0 +1,151 @@
+<div id="recipients_form" data-org-resource-url="<%= organization_resources_organizations_path %>">
+  <form accept-charset="UTF-8" action="/recipients" class="simple_form new_recipient_form" data-remote="true" method="post" role="form">
+
+    <!-- recipients_form_page 1: 'Add by' menu page -->
+    <div class="recipients_page container" id="recipients_form_page_1">
+
+      <div class="row">
+        <%= render partial: '/requests/subnav', locals: { active: 'recipients' } %>
+      </div>
+
+      <h1 class="larger-header">Add Recipients by</h1>
+
+      <div class="row">
+        <div class="col-xs-12">
+          <ul class="horiz-listing">
+            <li><a href="#add_by_phone" class="btn btn-default btn-lg btn-block add_by_phone"><i class="fa fa-phone"></i> Phone </a></li>
+            <li><a href="#add_by_email" class="btn btn-default btn-lg btn-block add_by_email"><i class="fa fa-envelope"></i> Email </a></li>
+            <li><a href="#add_by_organization" class="btn btn-default btn-lg btn-block add_by_organization"><i class="fa fa-user"></i> Name </a></li>
+            <li><a href="javascript:void(0)" class="btn btn-blue-muted btn-lg btn-block"><i class="fa fa-history"></i> Recents </a> <span class="highlight">(coming soon)</span></li>
+            <li><a href="javascript:void(0)" class="btn btn-blue-muted btn-lg btn-block"><i class="fa fa-star"></i> Favorites </a> <span class="highlight">(coming soon)</span></li>
+            <li><a href="javascript:void(0)" class="btn btn-blue-muted btn-lg btn-block"><i class="fa fa-search"></i> Search </a> <span class="highlight">(coming soon)</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-xs-6">
+          <button type="button" class="btn btn-default btn-block recipients_page_1 back_page">
+            <i class="fa fa-chevron-left"></i> Go Back
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- /.container -->
+
+    <!-- recipients_form_page 2: Add by Phone -->
+    <div class="container recipients_page phone" id="recipients_form_page_2" style="display:none" data-org-lookup-url="<%= by_contact_point_organizations_path %>">
+
+      <div class="row">
+        <%= render partial: '/requests/subnav', locals: { active: 'recipients' } %>
+      </div>
+
+      <div class="form-horizontal" role="form">
+        <div class="form-group">
+          <div class="col-xs-9">
+            <label class="control-label">Number</label>
+            <input type="tel" class="form-control contact_point" placeholder="(123) 1234-1234" data-mask="(999) 999-9999">
+            <span class="error_label" style="display:none">*Invalid phone</span>
+          </div>
+          <div class="col-xs-3 no-title">
+            <input class="boolean optional contact_using_ckbox" name="request[suppress_initial_message]" type="checkbox" value="1"> Mobile?
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-xs-6">
+            <a href="javascript:void(0)" class="btn btn-default btn-block recipients_page_2 back_page">Cancel</a>
+          </div>
+          <div class="col-xs-6">
+            <a href="javascript:void(0)" class="btn btn-primary btn-block lookup_btn">Enter</a>
+            <a href="javascript:void(0)" class="btn btn-primary btn-block add_recipient" style="display:none">Add</a>
+          </div>
+        </div>
+
+        <div class="resource_container" style="display:none">
+          <div class="form-group">
+            <label for="business" class="control-label">Organization</label>
+            <input type="text" class="form-control business_name organizations_list" placeholder="Select or add name">
+          </div>
+          <div class="form-group">
+            <label for="person" class="control-label">Person</label>
+            <input type="text" class="form-control resources resources_list" placeholder="Select or add people">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- recipients_form_page 3: Add by Email -->
+    <div class="container recipients_page email" id="recipients_form_page_3" style="display:none">
+
+      <div class="row">
+        <%= render partial: '/requests/subnav', locals: { active: 'recipients' } %>
+      </div>
+
+      <div class="form-horizontal" role="form">
+        <div class="form-group">
+          <label class="control-label">Email</label>
+          <input type="email" class="form-control contact_point" placeholder="email">
+          <span class="error_label" style="display:none">*Invalid email</span>
+        </div>
+
+        <div class="form-group">
+          <div class="col-xs-6">
+            <a href="javascript:void(0)" class="btn btn-default btn-block recipients_page_3 back_page">Cancel</a>
+          </div>
+          <div class="col-xs-6">
+            <a href="javascript:void(0)" class="btn btn-primary btn-block lookup_btn">Enter</a>
+            <a href="javascript:void(0)" class="btn btn-primary btn-block add_recipient" style="display:none">Add</a>
+          </div>
+        </div>
+
+        <div class="resource_container" style="display:none">
+
+          <div class="form-group">
+            <label for="business" class="control-label">Organization</label>
+            <input type="text" class="form-control business_name organizations_list" placeholder="Select or add name">
+          </div>
+
+          <div class="form-group">
+            <label for="person" class="control-label">Person</label>
+            <input type="text" class="form-control resources resources_list" placeholder="Select or add people">
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- recipients_form_page 4: Add by Business/Organization -->
+    <div class="container recipients_page organization" id="recipients_form_page_4" style="display:none" data-org-lookup-url="<%= by_id_organizations_path %>">
+
+      <div class="row">
+        <%= render partial: '/requests/subnav', locals: { active: 'recipients' } %>
+      </div>
+
+      <div class="form-horizontal" role="form">
+        <div class="form-group">
+          <div class="col-xs-6">
+            <a href="javascript:void(0)" class="btn btn-default btn-block recipients_page_4 back_page">Cancel</a>
+          </div>
+
+          <div class="col-xs-6">
+            <a href="javascript:void(0)" class="btn btn-primary btn-block lookup_btn">Enter</a>
+            <a href="javascript:void(0)" class="btn btn-primary btn-block add_recipient" style="display:none">Add</a>
+          </div>
+        </div>
+
+        <div class="resource_container">
+          <div class="form-group">
+            <label for="business" class="control-label">Organization</label>
+            <input type="text" class="form-control business_name organizations_list" placeholder="Select id">
+          </div>
+          <div class="form-group">
+            <label for="person" class="control-label">Person</label>
+            <input type="text" class="form-control resources resources_list" placeholder="Select or add people">
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </form>
+</div>

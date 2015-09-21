@@ -1,0 +1,97 @@
+<% current_uri = request.env['PATH_INFO']%>
+<div id="toolbar" class="navbar navbar-fixed-top" role="navigation">
+  <div class="container">
+
+    <div class="btn-group">
+
+      <div class="btn-group">
+        <button type="button" class="btn dropdown-toggle logo-link" data-toggle="dropdown">
+          <% if current_uri == root_path %>
+            <i class="fa fa-dashboard"></i> Dashboard
+          <% elsif current_uri == '/help' %>
+            <i class="fa fa-question-circle"></i> Help
+          <% elsif current_uri == '/about' %>
+            <img src="assets/ico-letsarrange.png" width="26" height="25"> <br /> About
+          <% elsif current_uri == '/terms' %>
+            <img src="assets/ico-legal.png" width="23" height="15"> <br /> Privacy <br />& Terms
+          <% elsif current_uri == '/contact' %>
+            <i class="fa fa-comment"></i> Give Feedback
+          <% else %>
+            <span class="ico logo"></span>
+          <% end %>
+        </button>
+        <ul class="dropdown-menu">
+          <li><a href="<%= root_path %>"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+          <li><a href="/help"><i class="fa fa-question-circle"></i> Help</a></li>
+          <li><a href="/about"><img src="assets/ico-letsarrange.png" width="26" height="25"> <br /> About</a></li>
+          <li><a href="/terms"><img src="assets/ico-legal.png" width="23" height="15"> <br /> Privacy <br />& Terms</a></li>
+          <li><a href="/contact"><i class="fa fa-comment"></i> Give Feedback</a></li>
+        </ul>
+      </div>
+
+      <div class="btn-group">
+        <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+          <% if current_uri == new_request_path %>
+            <i class="fa fa-plus"></i> Make New <br />Request
+          <% elsif current_uri == requests_path %>
+            <i class="fa fa-calendar-o"></i> Today’s <br />Requests
+          <% elsif current_uri == received_line_items_path %>
+            <i class="fa fa-forward"></i> Future <br />Requests
+          <% else %>
+            <span class="ico requests"></span><br />
+            Requests
+          <% end %>
+        </button>
+        <ul class="dropdown-menu">
+          <li><a href="<%= new_request_path %>"><i class="fa fa-plus"></i> Make New <br />Request</a></li>
+          <li><a href="<%= requests_path %>"><i class="fa fa-calendar-o"></i> Today’s <br />Requests</a></li>
+          <li><a href="<%= received_line_items_path %>"><i class="fa fa-forward"></i> Future <br />Requests</a></li>
+          <li><a href="javascript:void(0)"><i class="fa fa-history"></i> Past <br />Requests</a></li>
+        </ul>
+      </div>
+
+      <div class="btn-group">
+        <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+          <i class="fa fa-calendar"></i>
+          Appointments
+        </button>
+        <ul class="dropdown-menu">
+          <li><a href="javascript:void(0)"><i class="fa fa-plus"></i> Next <br />Appointment</a></li>
+          <li><a href="javascript:void(0)"><i class="fa fa-calendar-o"></i> Today’s <br />Appointments</a></li>
+          <li><a href="javascript:void(0)"><i class="fa fa-forward"></i> Future <br />Appointments</a></li>
+          <li><a href="javascript:void(0)"><i class="fa fa-history"></i> Past <br />Appointments</a></li>
+        </ul>
+      </div>
+
+      <div class="btn-group">
+        <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+          <% if current_uri == edit_user_registration_path %>
+            <i class="fa fa-user"></i> User <br /> Settings
+          <% elsif current_uri == contact_points_path %>
+            <i class="fa fa-phone"></i> Contact <br />Settings
+          <% elsif current_uri == organizations_path %>
+            <i class="fa fa-building-o"></i> Organization <br />Settings
+          <% else %>
+            <i class="fa fa-cog"></i>
+            Settings
+          <% end %>
+        </button>
+        <ul class="dropdown-menu">
+          <li><a href="<%= edit_user_registration_path %>"><i class="fa fa-user"></i> User <br /> Settings</a></li>
+          <li><a href="<%= contact_points_path %>"><i class="fa fa-phone"></i> Contact <br />Settings</a></li>
+          <li><a href="<%= organizations_path %>"><i class="fa fa-building-o"></i> Organization <br />Settings</a></li>
+          <li><a href="javascript:void(0)"><i class="fa fa-money"></i> Account <br />Balance</a></li>
+          <li>
+            <%= link_to destroy_user_session_path, method: "delete" do %>
+              <i class="fa fa-sign-out"></i> Sign <br />out</a>
+            <% end %>
+          </li>
+          <% if current_user.try(:admin?) %>
+            <li><a href="<%= admin_root_path %>"><i class="fa fa-cogs"></i> Admin</a></li>
+          <% end %>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</div>

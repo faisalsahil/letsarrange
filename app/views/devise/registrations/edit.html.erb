@@ -1,0 +1,33 @@
+<% provide(:title, 'Settings') %>
+<% header_content('Settings') %>
+
+<%= simple_form_for(resource,
+                    as: resource_name,
+                    url: registration_path(resource_name),
+                    :html => {  method: :put, :role => "form", class: "form-horizontal"}) do |f| %>
+
+  <%= f.error_notification %>
+
+  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+    <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+  <% end %>
+
+  <%= render partial: 'required_fields', locals: {f: f} %>
+  
+  <div class="form-group">
+    <div class="col-xs-12 field_container">
+     <%= f.input :password,
+              required: false,
+              label: false,
+              autocomplete: "off",
+              placeholder: 'New password (at least 6 characters)',
+              input_html: { class: 'form-control' } %>
+    </div>  
+  </div>
+
+  <br/>
+
+  <div class="form-actions">
+    <%= f.button :submit, "Update", class: "btn btn-lg btn-default btn-block" %>
+  </div>
+<% end %>

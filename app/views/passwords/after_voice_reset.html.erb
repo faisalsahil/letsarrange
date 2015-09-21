@@ -1,0 +1,15 @@
+<% content_for :navbar do %>
+  <h1 class="larger-header small-font">Forgot your password?</h1>
+<% end %>
+
+<% provide(:title, 'Forgot your password?') %>
+
+<p>To finish the process, you must call <%= ContactPoint::Phone.denormalized(TwilioNumber.default_number.number) %> and enter the following code:
+
+<div class="voice-reset-code">
+  <%= @code %>
+</div>
+
+<p>Once you have called and validated your code, click Reset password to continue</p>
+<%= link_to 'Cancel', new_user_session_path, class: 'btn btn-primary' %>
+<%= link_to 'Reset password', edit_user_password_url(reset_password_token: @token), class: 'btn btn-primary' %>

@@ -1,0 +1,4 @@
+ContactPointsController.remove_contact_point('<%= dom_id(@contact_point) %>');
+<% if current_user.preferred_voice %>
+ContactPointsController.update_contact_point('<%= dom_id(current_user.preferred_voice) %>', '<%= j(render current_user.preferred_voice) %>');
+<% end %>

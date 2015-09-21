@@ -1,0 +1,9 @@
+# Logfile created on 2014-08-07 09:54:17 +0500 by logger.rb/41954
+I, [2014-08-07T11:14:17.862617 #22598]  INFO -- : 2014-08-07T11:14:17+0500: [Worker(delayed_job.workless host:devsinc-HP-ProBook-450-G0 pid:22598)] Starting job worker
+I, [2014-08-07T11:14:17.981174 #22598]  INFO -- : 2014-08-07T11:14:17+0500: [Worker(delayed_job.workless host:devsinc-HP-ProBook-450-G0 pid:22598)] Job Devise::Async::Backend::DelayedJob#perform (id=1) RUNNING
+I, [2014-08-07T11:14:19.252284 #22598]  INFO -- : 2014-08-07T11:14:19+0500: [Worker(delayed_job.workless host:devsinc-HP-ProBook-450-G0 pid:22598)] Job Devise::Async::Backend::DelayedJob#perform (id=1) COMPLETED after 1.2708
+I, [2014-08-07T11:14:19.255086 #22598]  INFO -- : 2014-08-07T11:14:19+0500: [Worker(delayed_job.workless host:devsinc-HP-ProBook-450-G0 pid:22598)] 1 jobs processed at 0.7183 j/s, 0 failed
+I, [2014-08-07T11:43:58.749150 #5127]  INFO -- : 2014-08-07T11:43:58+0500: [Worker(delayed_job.workless host:devsinc-HP-ProBook-450-G0 pid:5127)] Starting job worker
+I, [2014-08-07T11:43:58.833578 #5127]  INFO -- : 2014-08-07T11:43:58+0500: [Worker(delayed_job.workless host:devsinc-HP-ProBook-450-G0 pid:5127)] Job Devise::Async::Backend::DelayedJob#perform (id=2) RUNNING
+I, [2014-08-07T11:44:00.387092 #5127]  INFO -- : 2014-08-07T11:44:00+0500: [Worker(delayed_job.workless host:devsinc-HP-ProBook-450-G0 pid:5127)] Job Devise::Async::Backend::DelayedJob#perform (id=2) COMPLETED after 1.5532
+I, [2014-08-07T11:44:00.389771 #5127]  INFO -- : 2014-08-07T11:44:00+0500: [Worker(delayed_job.workless host:devsinc-HP-ProBook-450-G0 pid:5127)] 1 jobs processed at 0.6096 j/s, 0 failed

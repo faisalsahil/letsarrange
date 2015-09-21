@@ -1,0 +1,7 @@
+<% active ||= 'overview' %>
+<ul class="subnav">
+  <li class="leave_options_page <%= 'active' if active == 'overview'%>"><a href="javascript:void(0)" data-back-to-page="1">Overview</a></li>
+  <li class="<%= 'active' if active == 'options'%>"><a href="javascript:void(0)" data-back-to-page="5">Options</a></li>
+  <li class="leave_options_page <%= 'active' if active == 'recipients'%>"><a href="javascript:void(0)" data-back-to-page="2" class="submenu_recipients back_page">Recipients</a></li>
+  <li class="last">&nbsp;</li>
+</ul>

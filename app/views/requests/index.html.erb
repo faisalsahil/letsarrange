@@ -1,0 +1,4 @@
+<% provide(:title, 'Requests made') %>
+<% header_content('Requests made') %>
+
+<%= render partial: 'organization', collection: @organizations, locals: { show_names: @organizations.count > 1 } %>

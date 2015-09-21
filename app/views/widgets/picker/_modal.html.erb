@@ -1,0 +1,17 @@
+<div class="modal <%= picker %> fade " id="<%= picker_id %>_<%= picker %>_modal" tabindex="-1" role="dialog" aria-hidden="true">
+     <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          <label style="width: 180px"><%= title %></label>
+          <p class="modal_subtitle"><%= subtitle %></p>
+          <hr/>
+          <span class="picker_holder"></span>
+          <a class="clear_btn">Clear</a> |
+          <a class="reset_btn">Reset</a> |
+          <a class="cancel_btn">Cancel</a>
+        </div>
+      </div>
+    </div>
+</div>
+
+<div class="input-append date <%= picker %>_picker" style="display:none"></div>

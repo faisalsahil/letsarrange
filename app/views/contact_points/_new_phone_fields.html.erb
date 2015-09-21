@@ -1,0 +1,23 @@
+<div id="new_phone_container" class="row">
+  <%= simple_form_for ContactPoint.new, remote: true do |f| %>
+    <%= f.hidden_field :contact_type, value: 'sms' %>
+
+    <div class="form-group">
+      <%= f.input :description,
+                required: false,
+                label: false,
+                input_html: { type: 'tel', class: 'form-control contact-point-description', data: { mask: '(999) 999-9999' } },
+                placeholder: 'Phone',
+                wrapper_html: { class: 'col-xs-10 col-sm-4 col-md-3 col-lg-2' } %>
+    </div>
+
+
+    <div class="form-group inline-actions"><br/>
+      <div class="col-xs-12">
+        <%= f.submit 'Add as Text', class: 'btn btn-link add-as-link', data: { type: 'sms' } %>
+        <%= f.submit 'Add as voice', class: 'btn btn-link add-as-link', data: { type: 'voice' } %>
+        <%= f.submit 'Add as both', class: 'btn btn-link', id: 'add_both_phones', data: { url: create_both_contact_points_path } %>
+      </div>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,31 @@
+<% content_for :navbar do %>
+  <h1 class="larger-header small-font">Change your password</h1>
+<% end %>
+
+<% provide(:title, 'Change your password') %>
+<%= simple_form_for resource, as: resource_name, url: password_path(resource_name), html: { method: :put, role: 'form', class: 'devise_form' } do |f| %>
+  <%= f.error_notification %>
+
+  <%= f.input :reset_password_token, as: :hidden %>
+  <%= f.full_error :reset_password_token %>
+
+  <%= render 'devise/shared/password', f: f %>
+
+  <div class="form-group">
+    <div class="col-xs-12 field_container">
+      <%= f.input :password_confirmation,
+                autocomplete: "off",
+                label: false,
+                input_html: { class: 'form-control' },
+                placeholder: 'Password confirmation',
+                required: false %>
+    </div>
+  </div>
+
+  <div class="form_actions form-group">
+    <div class="col-sm-12">
+      <br/>
+      <%= f.button :submit, 'Change my password', class: 'btn btn-lg btn-default btn-block' %>
+    </div>
+  </div>
+<% end %>

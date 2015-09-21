@@ -1,0 +1,24 @@
+<div class="page" id="request_page_2" style="display:none">
+
+  <%= render partial: 'subnav', locals: { active: 'recipients' } %>
+
+  <div class="container">
+    <h1>Send this request to <a href="#recipients" class="btn request_page_2 next_page"><i class="fa fa-plus"></i> Add recipient</a> </h1>
+    <div class="row">
+      <ul class="list-group stripped" id="lineitems_recipients_list"></ul>
+
+      <div class="form_actions form-group">
+        <div class="col-xs-6">
+          <button type="button" class="btn btn-default btn-block request_page_2 options_page">
+            <i class="fa fa-chevron-left"></i> Go Back
+          </button>
+        </div>
+        <div class="col-xs-6" style="display:none">
+          <button type="submit" class="btn btn-primary btn-block send_request_btn" data-disable-with="Sending request...">
+            <i class="fa fa-send"></i> Send request
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,75 @@
+<% header_content(@organization_resource.name) %>
+
+<div id="show_org_resource" class="admin">
+  <h4>Details</h4>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Organization</th>
+        <th>Org ID</th>
+        <th>Resource name at this Org</th>
+        <th>Resource</th>
+        <th>Resource ID</th>
+        <th>Visibility</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render @organization_resource %>
+    </tbody>
+  </table>
+
+  <hr/>
+
+  <% if @organization_resource.requests.present? %>
+    <h4>Requests made</h4>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Org. ID</th>
+          <th>Org. resource</th>
+          <th>Description</th>
+          <th>Location</th>
+          <th>Start by</th>
+          <th>Finish by</th>
+          <th>Time Zone</th>
+          <th>Length</th>
+          <th>Offer</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render @organization_resource.requests.includes(:organization, :organization_resource) %>
+      </tbody>
+    </table>
+
+    <hr/>
+  <% end %>
+
+  <% if @organization_resource.line_items.present? %>
+    <h4>Line Items received</h4>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Org. ID</th>
+          <th>Resource ID</th>
+          <th>Description</th>
+          <th>Location</th>
+          <th>Start by</th>
+          <th>Finish by</th>
+          <th>Length</th>
+          <th>Offer</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render @organization_resource.line_items.includes(:request, :requested_organization, :resource) %>
+      </tbody>
+    </table>
+
+    <hr/>
+  <% end %>
+
+  <p><%= link_to 'Back to Organization Resources', admin_organization_resources_path %></p>
+</div>

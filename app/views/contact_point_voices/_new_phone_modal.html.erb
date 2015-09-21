@@ -1,0 +1,25 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      <h4 class="modal-title" id="myModalLabel">Phone verification</h4>
+    </div>
+    <%= simple_form_for ContactPoint::Voice.new, html: { class: 'form-horizontal' }, remote: true do |f| %>
+      <div class="modal-body">
+        <p>You are almost there! To be able to create a new request you will need to create and verify a phone number first:</p>
+        <div class="form-group with-margin">
+          <div class="col-xs-8 field-with-checkbox">
+            <%= phone_input(f, phone) %>
+            <%= phone_errors_on_sign_up(current_user) %>
+          </div>
+          <div class="col-xs-4 field-checkbox">
+            <%= f.input :sms_capable, as: :boolean, label: 'Mobile?', wrapper: false, input_html: { checked: sms_capable } %>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <%= f.button :submit, 'Add phone', class: 'btn btn-lg btn-default btn-block' %>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,3 @@
+<% title = picker_title(picker) %> 
+<%= f.hidden_field picker, class: "#{picker}_input", value: LineItemHelper.date_input(f.object,picker) %>
+<%= render partial: "widgets/picker/modal", locals: {picker: picker, picker_id: picker_id, title: title, subtitle: "Select hours then minutes. Click the date to change it"} %>

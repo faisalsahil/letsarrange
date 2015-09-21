@@ -1,0 +1,45 @@
+<div class="col-xs-6">
+  <label for="best" class="control-label">Ideal start</label>
+  <div class="field_container">
+    <div class="picker_container ideal_start" id="<%= date_picker_id %>_ideal_start_container">
+      <input type="text" readonly="true" class="form-control ideal_start_control" placeholder="e.g. 2pm">
+      <%= render partial: "widgets/compound_date_picker/modal", locals: {picker: :ideal_start, picker_id: date_picker_id, f: f} %>
+    </div>
+  </div>
+</div>
+
+<div class="col-xs-6">
+<label for="length" class="control-label">Length H:MM</label>
+  <div class="field_container">
+    <div class="picker_container length" id="<%= length_picker_id %>_container">
+      <input readonly="true" type="text" class="form-control length_control" placeholder="e.g. 1:00">
+      <%= f.hidden_field :length, class: "length_input" %>
+      <% title = picker_title(:length) %>
+      <%= render partial: "widgets/picker/modal", locals: {picker: "length", picker_id: length_picker_id, title: title, subtitle: "Select hours then minutes"} %>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="col-xs-6">
+  <label for="earliest" class="control-label">Earliest start  -</label>
+  <div class="row-fluid plenty">
+    <div class="field_container">
+      <div class="picker_container earliest_start" id="<%= date_picker_id %>_earliest_start_container">
+        <input type="text" readonly="true" class="earliest_start_control form-control" placeholder="e.g. 1pm">
+        <%= render partial: "widgets/compound_date_picker/modal", locals: {picker: :earliest_start, picker_id: date_picker_id, f: f} %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="col-xs-6">
+  <label for="latest" class="control-label">Finish by</label>
+    <div class="field_container">
+      <div class="picker_container finish_by" id="<%= date_picker_id %>_finish_by_container">
+        <input type="text" readonly="true" class="finish_by_control form-control" placeholder="e.g. 4pm">
+        <%= render partial: "widgets/compound_date_picker/modal", locals: {picker: :finish_by, picker_id: date_picker_id, f: f} %>
+      </div>
+    </div>
+</div>

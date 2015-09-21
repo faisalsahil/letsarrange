@@ -1,0 +1,39 @@
+<% header_content(@resource.name) %>
+
+<div id="show_resource" class="admin">
+  <% provide(:title, @resource.name) %>
+  <h3>Resource name: <%= @resource.name %></h3>
+  <div>Resource ID: <%= @resource.uniqueid %></div>
+
+  <br/>
+
+  <h4>Organizations</h4>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Org ID</th>
+        <th>Name</th>
+        <th>Resource known as</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+
+    <% @resource.organization_resources.each do |org_resource| %>
+      <tr>
+        <td><%= link_to org_resource.organization.uniqueid, admin_organization_path(org_resource.organization) %></td>
+        <td><%= org_resource.organization.name %></td>
+        <td><%= org_resource.name %></td>
+        <td>
+          <%= link_to 'Line Items', admin_organization_resource_line_items_path(org_resource) %> |
+          <%= link_to 'Org. resource', admin_organization_resource_path(org_resource) %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+
+  <%= link_to 'All LIs for this resource across all orgs', admin_resource_line_items_path(@resource) %>
+
+  <div class="actions">
+    <%= link_to "Back", :back %>
+  </div>
+</div>

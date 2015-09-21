@@ -1,0 +1,24 @@
+<% header_content('Line items') %>
+
+<div class="admin">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Org. ID</th>
+        <th>Resource ID</th>
+        <th>Description</th>
+        <th>Location</th>
+        <th>Start by</th>
+        <th>Finish by</th>
+        <th>Length</th>
+        <th>Offer</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+
+    <%= render partial: 'line_item', collection: @line_items.order(id: :desc) %>
+  </table>
+
+  <%= paginate @line_items %>
+</div>

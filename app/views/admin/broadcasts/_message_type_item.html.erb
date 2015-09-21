@@ -1,0 +1,22 @@
+<tr>
+  <td><%= message.class %></td>
+  <% if message.is_a?(SmsMessage) %>
+    <td><%= Admin::LineItemHelper.link_for_number(message.from) %></td>
+    <td><%= Admin::LineItemHelper.link_for_number(message.to) %></td>
+  <% else %>
+    <td><%= Admin::LineItemHelper.link_for_mail(message.from) %></td>
+    <td><%= Admin::LineItemHelper.link_for_mail(message.to) %></td>
+  <% end %>
+  <% if message.to_backend? %>
+    <td>letsarrange</td>
+  <% else %>
+    <% to_user = message.to_user %>
+    <td><%= to_user ? link_to(message.to_user.uniqueid, admin_user_path(message.to_user)) : 'deleted user' %></td>
+  <% end %>
+  <td><%= message.sid %></td>
+  <% if local_assigns.has_key?(:show_broadcast_link) %>
+    <td>
+      <%= link_to 'View broadcast', admin_broadcast_path(message.broadcast) %>
+    </td>
+  <% end %>
+</tr>

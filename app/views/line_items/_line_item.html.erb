@@ -1,0 +1,17 @@
+<% line_title = if local_assigns.has_key?(:use_full_title) %>
+  <% line_item.to_sentence %>
+<% else %>
+  <% line_item_text(line_item, current_user) %>
+<% end %>
+
+<li class="list-group-item" id="<%= dom_id(line_item) %>">
+  <div class="line_item">
+    <a href="<%= request_line_item_path(line_item.request, line_item) %>">
+      <h2><span class="status">[<%= line_item.humanized_status %>] </span><%= line_title %></h2>
+
+      <% if broadcast = line_item.last_broadcast %>
+        <span class="date"><%= DateHelper.created_at_for_broadcast(broadcast) %></span> <span class="broadcast"><%= broadcast.full_body %></span>
+      <% end %>
+    </a>
+  </div>
+</li>

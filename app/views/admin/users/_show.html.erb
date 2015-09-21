@@ -1,0 +1,78 @@
+<% header_content(display_text(@user)) %>
+
+<div id="show_user" class="admin">
+  <% provide(:title, display_text(@user)) %>
+  <h3>User name: <%= @user.name %></h3>
+  <div>User ID: <%= @user.uniqueid %></div>
+  <div>Default Org Resource: <%= @user.default_org_resource.try(:full_name) %></div>
+  <div>Last Login: <%= user_last_login_info(@user) %></div>
+  <div>
+    Admin: <%= @user.admin? %>
+    <span>
+      <% if @user.admin? %>
+        <%= link_to 'Revoke admin rights', set_admin_admin_user_path(@user), method: :patch %>
+      <% else %>
+        <%= link_to 'Grant admin rights', set_admin_admin_user_path(@user, enable: true), method: :patch %>
+      <% end %>
+    </span>
+  </div>
+  <br/>
+
+  <h4>Organizations</h4>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Org ID</th>
+        <th>Name</th>
+        <th>User known as</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+
+    <% @user.organization_users.order("name ASC").each do |org_user| %>
+      <tr>
+        <td><%= link_to org_user.organization.uniqueid, admin_organization_path(org_user.organization) %></td>
+        <td><%= org_user.organization.name %></td>
+        <td><%= link_to org_user.name, admin_organization_user_path(org_user) %></td>
+        <td>
+          <%= link_to "Requests", admin_organization_requests_path(org_user.organization) %> |
+          <%= link_to "Manage", admin_organization_organization_user_path(org_user.organization, org_user) %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+
+  <%= link_to "View requests for all orgs", admin_user_requests_path(@user) %>
+
+  <br/><br/>
+
+  <h4>Contact method</h4>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Details</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+
+    <% @user.contact_points.order('type DESC').each do |contact| %>
+      <tr>
+        <td><%= contact.humanized_type %></td>
+        <td><%= link_to contact.description, admin_user_contact_point_path(@user,contact) %></td>
+        <td><%= contact.humanized_status(for_admin: true) %></td>
+        <td><%= destroy_row(:user_contact_point, @user, contact) %><td>
+      </tr>
+    <% end %>
+  </table>
+
+  <p><%= link_to "View all phone mappings", admin_user_phone_mappings_path(@user) %></p>
+  <p><%= link_to "View all email mappings", admin_user_email_mappings_path(@user) %></p>
+  <p><%= link_to "View all url mappings", admin_user_url_mappings_path(@user) %></p>
+
+  <div class="actions">
+    <%= link_to 'Back', :back %>
+  </div>
+</div>
+

@@ -1,0 +1,21 @@
+<div class="form-group">
+  <div class="col-xs-12 field_container">
+      <%= f.input :name,
+            label: false,
+            required: false,
+            input_html: { class: 'form-control' },
+            placeholder: 'Name (e.g. Jamie Black)',
+            autofocus: true %>
+  </div>  
+</div>            
+
+
+<div class="form-group">
+  <div class="col-xs-12 field_container">
+    <%= f.input :uniqueid,
+            required: false,
+            label: false,
+            input_html: { autocapitalize: 'off', autocorrect: 'off', autocomplete: :off, class: 'form-control' },
+            placeholder: 'User ID (e.g. jamieblack72)' %>
+  </div>  
+</div>            

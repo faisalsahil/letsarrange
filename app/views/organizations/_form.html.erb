@@ -1,0 +1,42 @@
+<div class="form-group">
+  <label for="organization_name" class="col-sm-3 control-label">Org Name</label>
+  <div class="col-sm-9 field_container">
+    <%= f.input :name,
+                label: false,
+                required: false,
+                input_html: { autocapitalize: "off", class: "form-control" },
+                placeholder: "e.g. Zen Spa",
+                autofocus: true %>
+  </div>
+</div>
+
+<div class="form-group">
+  <label for="organization_name" class="col-sm-3 control-label">Org Id</label>
+  <div class="col-sm-9 field_container">
+    <%= f.input :uniqueid,
+                label: false,
+                required: false,
+                input_html: { autocapitalize: 'off', autocorrect: 'off', autocomplete: :off, class: "form-control" },
+                placeholder: "e.g. zen-spa",
+                autofocus: true %>
+  </div>
+</div>
+
+<div class="form-group">
+  <label for="org_user_name" class="col-sm-3 control-label">My name at this org</label>
+  <div class="col-sm-9">
+    <input type="text" name="org_user_name" id="org_user_name" class="form-control" value="<%= @org_user_name %>" placeholder="Dana at Zen Spa" aria-required="true" required="required">
+  </div>
+</div>
+
+<div class="form-group">
+  <label for="organization_visibility" class="col-sm-3 control-label">Visibility</label>
+  <div class="col-sm-9 field_container">
+    <%= f.input :visibility,
+                label: false,
+                required: false,
+                input_html: { class: 'form-control' },
+                collection: [['Public', 'public'], ['Private', 'private']],
+                prompt: false %>
+  </div>
+</div>

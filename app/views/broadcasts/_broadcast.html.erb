@@ -1,0 +1,19 @@
+<li id="<%= dom_id(broadcast) %>" class="broadcast">
+	<div>
+		<span style="color:gray"><%= DateHelper.created_at_for_broadcast(broadcast) %></span>
+		<%= broadcast.full_body %>
+    <% if local_assigns[:transfer_options] %>
+      <%= simple_form_for broadcast, url: inbound_number_merge_path(broadcast.broadcastable), remote: true, html: { role: 'form', class: 'form-inline transfer-form' } do |f| %>
+        <%= f.input :broadcastable_id,
+                    as: :select,
+                    label: false,
+                    collection: transfer_options,
+                    label_method: ->(b) { b.title(current_user) },
+                    value_method: :id,
+                    prompt: 'Transfer broadcast to',
+                    selected: nil %>
+        <%= f.submit 'transfer' %>
+      <% end %>
+    <% end %>
+	</div>
+</li>

@@ -1,0 +1,63 @@
+<% provide(:title, 'Show request') %>
+
+<% header_content('Request') do %>
+  <p><%= @line_item.title(current_user) %></p>
+<% end %>
+
+<%= simple_form_for [@request,@line_item], method: :put, html: { role: 'form', class: 'form-horizontal edit_line_item' }, remote: true do |f| %>
+    <div class="form-group">
+      <label class="col-xs-4 control-label" style="padding-top: 0px;">
+        <%= line_item_requestor_label(@line_item) %>
+      </label>
+      <p class="as_label"><%= @line_item.created_by_name %></p>
+
+      <label class="col-xs-4 control-label" style="padding-top: 0px;">
+        <%= line_item_responder_label(@line_item) %>
+      </label>
+      <p class="as_label"><%= @line_item.created_for_name %></p>
+
+      <label class="col-xs-4 control-label" style="padding-top: 0px;">Time Zone</label>
+      <p class="as_label"><%= TimeZoneHelper.format @line_item.time_zone %></p>
+    </div>
+
+    <%= render partial: "/requests/line_item_form_fields", locals: {f: f, length_picker_id: "line_item_length_picker", dates_picker_id: "line_item", line_change: true} %>
+
+    <div class="form-group">
+      <label class="control-label">With who?</label>
+
+      <div class="">
+        <%= f.simple_fields_for :organization_resource do |org_resource| %>
+          <%= org_resource.input :name, label: false, input_html: { data: { must_confirm: true } }%>
+        <% end %>
+      </div>
+
+      <em><%= phone_for_line_item(@line_item, current_user) %></em>
+    </div>
+    
+    <div class="form-group">
+      <label class="control-label">Comment</label>
+     <div id="free_text_reply">
+       <%= f.simple_fields_for :line_change do |change| %>
+		    <%= change.input :comment, placeholder: "anything else? ",
+                         required: false, label: false, input_html: { class: 'form-control' } %>
+       <% end %>
+     </div>
+    </div>
+ 
+    <br/>
+
+    <div class="form_actions form-group">
+      <div class="col-sm-6">
+         <%= f.submit(@line_item.offerable_by?(current_user) ? 'Offer' : 'Counter', class: 'btn btn-primary btn-block', id: 'submit_changes_button', data: { disable_with: 'Processing...', acceptable: @line_item.acceptable_by?(current_user) }) unless @line_item.closed? %>
+	  </div>
+      <div class="col-sm-6">
+        <%= line_item_close_button(current_user, f) %>
+      </div>
+    </div>
+<% end %>
+
+<hr/>
+
+<ul class="list">
+	<%= render @line_item.broadcasts.order(id: :desc) %>
+</ul>

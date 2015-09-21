@@ -1,0 +1,30 @@
+<%= content_for(:classes_for_container) { 'wide request-list' } %>
+
+<% if show_names %>
+  <div class="request-summary">
+    <p><%= organization.name %></p>
+  </div>
+<% end %> 
+
+<ul class="list-group stripped request_list ">
+  <% organization.requests.order("earliest_start desc").each do |request| %>
+    <li class="list-group-item">
+      <div class="request_title">
+        <a href="<%= request_path(request) %>">
+          <i class="fa fa-angle-right pull-right"></i>
+          <p><%= request.title(without_from: true) %></p>
+        </a>
+      </div>
+    </li>
+  <% end %>
+</ul>
+
+<% unless organization.requests.any? %>
+  <p>You don't have any requests right now</p>
+  
+  <% if show_names %>
+    <%= link_to "Make a request now for #{organization.name}", new_request_path %>
+  <% else %>
+    <%= link_to "Make a request now", new_request_path %>
+  <% end %>
+<% end %>

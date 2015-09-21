@@ -1,0 +1,94 @@
+
+<div class="container" style="display:none">
+  <div id="tutorial" class="row owl-carousel owl-theme">
+
+    <div>
+      <div class="col-xs-12 content-top">
+        <h2>Your personal appointment assistant</h2>
+        <div class="ico-personal-assistant"></div>
+        <h3>A web app that puts you in control</h3>
+        <h3>Helps you negotiate when, where, and (maybe) how much</h3>
+      </div>
+
+      <%= render partial: "devise/sessions/tutorial_nav" %>
+    </div>
+
+    <div>
+      <div class="col-xs-12 content-top">
+        <h2>Use it for anything</h2>
+        <table width="300px" border="0" cellspacing="0" cellpadding="0" align="center" class="table-list appointments">
+          <tr>
+            <td width="20%" valign="top"><span class="ico-lessons"></span></td>
+            <td width="80%" valign="top">lessons and training</td>
+          </tr>
+          <tr>
+            <td width="20%" valign="top"><span class="ico-health"></span> </td>
+            <td width="80%" valign="top">health and beauty</td>
+          </tr>
+          <tr>
+            <td width="20%" valign="top"><span class="ico-social"></span></td>
+            <td width="80%" valign="top">social and dating</td>
+          </tr>
+        </table>
+      </div>
+
+      <%= render partial: "devise/sessions/tutorial_nav" %>
+    </div>
+
+    <div>
+      <div class="col-xs-12 content-top">
+        <h2>Send requests to anyone, any way you want</h2>
+        <table width="300px" border="0" cellspacing="0" cellpadding="0" align="center">
+          <tr>
+            <td width="10%" class="text-right" valign="top"><span class="ico-fork"></span></td>
+            <td width="90%" valign="top">
+              <ul class="ul-requests">
+                <li>By email <span class="ico-arrow one"></span></li>
+                <li>By text <span class="ico-arrow two"></span></li>
+                <li>By phone <span class="ico-arrow three"></span></li>
+              </ul>
+            </td>
+          </tr>
+        </table>
+      </div>
+
+      <%= render partial: "devise/sessions/tutorial_nav" %>
+    </div>
+
+    <div>
+      <div class="col-xs-12 content-top">
+        <h2>Focused on you</h2>
+        <div class="ico-focus-on-you"></div>
+        <h3>Starts with your needs, not their schedules</h3>
+        <h3>Easily negotiate with several people at once</h3>
+        <h3>Helps you manage last minute changes</h3>
+      </div>
+
+      <%= render partial: "devise/sessions/tutorial_nav" %>
+    </div>
+
+
+    <div>
+      <div class="col-xs-12 content-top">
+        <h2>Helps you stay safe</h2>
+        <table width="300px" border="0" cellspacing="0" cellpadding="0" align="center" class="table-list">
+          <tr>
+            <td width="20%" valign="top"><span class="ico-mask"></span></td>
+            <td width="80%" valign="top">Mask your contact details (if you like)</td>
+          </tr>
+          <tr>
+            <td width="20%" valign="top"><span class="ico-shh"></span></td>
+            <td width="80%" valign="top">Say as much or as little as you want</td>
+          </tr>
+          <tr>
+            <td width="20%" valign="top"><span class="ico-checkin"></span></td>
+            <td width="80%" valign="top">Safety check-in (coming soon)</td>
+          </tr>
+        </table>
+      </div>
+
+      <%= render partial: "devise/sessions/tutorial_nav", locals: { without_next_link: true } %>
+    </div>
+
+  </div>
+</div>

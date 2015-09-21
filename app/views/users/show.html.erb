@@ -1,0 +1,29 @@
+<% provide(:title, 'User') %>
+<% header_content(display_text(@user)) %>
+
+<div id="show_user">
+	<% provide(:title, display_text(@user)) %>
+	<h3><%= display_text @user %></h3>
+
+  <% if @user.organizations.count > 1 %>
+  <h4>Organizations</h4>
+  <ul class="list orgs_list">
+    <% @user.organizations.each do |org| %>
+      <li><%= org.name %></li>
+    <% end %>
+  </ul>
+  <% end %>
+
+  <% if @user.contact_points.count > 0 %>
+    <h4>Contact method</h4>
+    <ul class="list">
+      <% @user.contact_points.enabled.each do |contact| %>
+        <li>
+          <%= contact.humanized_type %>: <%= contact.description %>
+          <%= link_to('Set as destination number', contact_point_destination_path(contact), method: :patch, remote: true) if contact.voice? && @user != current_user %>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+
+</div>

@@ -1,0 +1,16 @@
+<div id="line_0" class="nested-fields new_resource" style="display:none">
+  <%= f.input :organization_resource_id, as: :hidden, input_html: {class: 'organization_resource_id' } %>
+  <%= f.input :created_for_id, as: :hidden, input_html: { class: 'created_for_id' } %>
+
+
+  <%= render partial: "line_item_form_fields", locals: {f: f, length_picker_id: "picker_id", dates_picker_id: "picker_id"} %>
+
+  <div class="form-group">
+    <div class="col-xs-6">
+      <a href="javascript:void(0)" class="btn btn-default btn-block cancel_customize_recipient">Discard</a>
+    </div>
+    <div class="col-xs-6">
+      <a href="javascript:void(0)" class="btn btn-primary btn-block customize_recipient">Save</a>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+<div id="<%= dom_id(organization) %>">
+  <% if current_user.default_org == organization %>
+  <p><span class="label label-primary">This is your default organization</span></p>
+  <% end %>
+  <p>Org Name: <%= organization.name %></p>
+  <p>Org ID: <%= organization.uniqueid %></p>
+  <p>User's display name: <%= OrganizationUser.name_for(organization: organization, user: current_user) %></p>
+  <p>Visibility: <%= organization.visibility %>
+    <% if current_user.can_manage_organization?(organization) %>
+      (<%= link_to 'change', organization_visibility_path(organization, private: organization.private? ? 0 : 1), method: :patch, remote: true %>)
+    <% end %>
+  </p>
+  <% if current_user.organization_user_for(organization.id).untrusted? %>
+  <p>Status: untrusted</p>
+  <% end %>
+  <% if current_user.can_manage_organization?(organization) %>
+    <p>Default user: <%= organization.default_user ? organization.default_user.name : '-' %></p>
+  <% end %>
+  <p>
+    <% if current_user.can_manage_organization?(organization) %>
+      <%= link_to 'edit', edit_organization_path(organization), class: 'btn btn-xs' %>
+      <%= link_to 'delete', organization_path(organization), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-xs' if organization.can_be_destroyed_by?(current_user) && current_user.multiple_organizations? %>
+      <%= link_to 'users', organization_users_path(organization), class: 'btn btn-xs' %>
+      <%= link_to 'resources', organization_resources_path(organization), class: 'btn btn-xs' %>
+    <% else %>
+      <%= link_to 'unlink', organization_unlink_path(organization), method: :patch, data: { confirm: 'Are you sure?' }, class: 'btn btn-xs' %>
+    <% end %>
+  </p>
+</div>
+<br />

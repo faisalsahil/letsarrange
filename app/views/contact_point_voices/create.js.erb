@@ -1,0 +1,3 @@
+$('#new_phone_modal').modal('hide');
+$('#aux_modal .modal-content').html('<%= j(render 'common/phone_verification_form', voice: @voice, sms: @sms, in_modal: true) %>');
+ContactPointsController.show_voice_verification_modal('<%= new_contact_point_voice_verification_path(@voice, for_modal: '1', without_refresh: '1') %>');

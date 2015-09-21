@@ -1,0 +1,17 @@
+<% provide(:title, 'Resend unlock instructions') %>
+<% content_for :navbar do %>
+  <h1 class="larger-header small-font">Resend unlock instructions</h1>
+<% end %>
+
+<%= simple_form_for(resource, :as => resource_name, :url => unlock_path(resource_name), :html => { :method => :post }) do |f| %>
+  <%= f.error_notification %>
+  <%= f.full_error :unlock_token %>
+
+  <div class="form-group">
+    <%= render :partial => 'devise/shared/username', :locals=>{:f=>f } %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, "Resend unlock instructions", class: "btn-primary" %>
+  </div>
+<% end %>

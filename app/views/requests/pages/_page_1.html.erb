@@ -1,0 +1,39 @@
+<div class="page" id="request_page_1">
+
+  <%= render partial: 'subnav', locals: { active: 'overview' } %>
+
+  <%= f.input :organization_resource_id, as: :hidden %>
+
+  <%= render 'line_item_form_fields', f: f, length_picker_id: 'request_length_picker', dates_picker_id: 'request' %>
+
+  <div class="form-group col-xs-12">
+    <label for="request_time_zone" class="control-label">Time zone (change if you need)</label>
+    <div class="field_container">
+      <%= f.input :time_zone, label: false, wrapper: false,
+                  collection: LetsArrange::TimeZone.us_zones,
+                  label_method: :to_s,
+                  value_method: :identifier,
+                  prompt: false %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-xs-6">
+      <%= link_to root_path, class: "btn btn-default btn-block", id: "btn_cancel_request" do %>
+        <i class="fa fa-times"></i> Cancel
+      <% end %>
+    </div>
+    <div class="col-xs-6">
+      <button type="button" class="btn btn-primary btn-block request_page_1 next_page">
+        Next <i class="fa fa-chevron-right"></i>
+      </button>
+    </div>
+  </div>
+
+  <div style="display:none">
+    <%= link_to_add_association 'Add this recipient', f, :line_items,
+          'data-association-insertion-method' => :append,
+          'data-association-insertion-node' => "#resources",
+          'data-count' => 1 %>
+  </div>
+</div>

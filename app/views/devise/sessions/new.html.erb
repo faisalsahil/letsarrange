@@ -1,0 +1,19 @@
+<div class="landing-body" style="<%= 'display:none' if show_login? %>">
+  <h1 class="cover-heading">Your personal appointment assistant</h1>
+  <h2>Anything, anyone, any way you want</h2>
+
+  <p class="lead"><a href="javascript:void(0)" class="btn btn-lg btn-primary btn-block" id="learn_more_link">Learn more</a></p>
+  <p class="lead"><a href="javascript:void(0)" class="btn btn-lg btn-default btn-block" id="start_now_link">Sign in</a></p>
+</div>
+
+<div id="signin-form" class="landing-form" style="<%= 'display:none' unless show_login? %>">
+  <%= render 'devise/sessions/form' %>
+</div>
+
+<div id="signup-form" class="landing-form"  style="display:none">
+  <%= render 'devise/registrations/form' %>
+</div>
+
+<%= content_for :tutorial do %>
+  <%= render 'devise/sessions/landing' %>
+<% end %>

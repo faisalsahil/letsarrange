@@ -1,0 +1,14 @@
+<%= f.simple_fields_for :contact_information do |cp_builder| %>
+  <div class="form-group">
+    <div class="col-xs-12 field_container">
+      <div class="col-xs-8 field-with-checkbox">
+        <%= phone_input(cp_builder, value) %>
+        <%= f.object.errors[:phone].first %>
+        <%= phone_errors_on_sign_up(f.object) %>
+      </div>
+      <div class="col-xs-4 field-checkbox">
+        <%= cp_builder.input :sms_capable, as: :boolean, label: 'Mobile?', wrapper: false, input_html: { checked: sms_capable } %>
+      </div>
+    </div>
+  </div>
+<% end %>

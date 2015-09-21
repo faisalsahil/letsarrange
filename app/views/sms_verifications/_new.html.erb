@@ -1,0 +1,15 @@
+<%= form_tag contact_point_sms_verification_path(sms), remote: true, class: 'form-inline sms-verif-form' do |f| %>
+  <%= text_field_tag :verification_code, nil,
+                     class: 'form-control sms-code-input',
+                     placeholder: 'Code',
+                     maxlength: SmsVerifiable::SMS_VERIFICATION_CODE_LENGTH,
+                     type: 'tel'
+  %>
+  <%= hidden_field_tag :success_url, local_assigns[:success_url] if local_assigns[:success_url] %>
+  <% if local_assigns[:for_signup] %>
+    <%= submit_tag 'Enter', class: 'btn btn-primary' %>
+  <% else %>
+    <%= submit_tag 'verify', class: 'btn btn-link' %>
+  <% end %>
+  <p class="code_error"></p>
+<% end %>

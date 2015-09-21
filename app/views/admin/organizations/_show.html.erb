@@ -1,0 +1,65 @@
+<% header_content('Organization') %>
+
+<div id="show_organization" class="admin">
+  <% provide(:title, @organization.name) %>
+  <h3>Organization name: <%= @organization.name %></h3>
+  <div>Org ID: <%= @organization.uniqueid %></div>
+  <div>Visibility: <%= @organization.visibility %> (<%= link_to 'change', visibility_admin_organization_path(@organization, private: @organization.private? ? 0 : 1), method: :patch %>)</div>
+  <br/>
+
+  <%= link_to "All requests", admin_organization_requests_path(@organization) %>
+  <hr/>
+
+  <h4>Users</h4>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>User ID</th>
+        <th>Name</th>
+        <th>Known as</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+
+    <% @organization.organization_users.each do |org_user| %>
+      <tr>
+        <td><%= link_to org_user.user.uniqueid, admin_user_path(org_user.user) %></td>
+        <td><%= org_user.user.name %></td>
+        <td><%= link_to org_user.name, admin_organization_user_path(org_user) %></td>
+        <td><%= org_user.humanized_status %></td>
+      </tr>
+    <% end %>
+  </table>
+
+  <br/>
+
+  <h4>Resources</h4>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Resource ID</th>
+        <th>Name</th>
+        <th>Known as</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+
+    <% @organization.organization_resources.each do |org_resource| %>
+      <tr>
+        <td><%= link_to org_resource.resource.uniqueid, admin_resource_path(org_resource.resource) %></td>
+        <td><%= org_resource.resource.name %></td>
+          <td><%= org_resource.name %></td>
+          <td>
+            <%= link_to 'Line Items', admin_organization_resource_line_items_path(org_resource) %> |
+            <%= link_to 'Manage', admin_organization_resource_path(org_resource) %>
+          </td>
+      </tr>
+    <% end %>
+  </table>
+
+  <br/>
+
+  <div class="actions">
+    <%= link_to "Back", :back %>
+  </div>
+</div>

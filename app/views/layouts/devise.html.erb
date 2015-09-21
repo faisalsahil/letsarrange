@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;"/>
+    <meta name="description" content="Lets arrange">
+    <meta name="author" content="Lets arrange">
+    <meta name="rating" content="general">
+
+    <title>Lets arrange | Your personal appointment assistant - anything, anyone, any way you want</title>
+
+    <%= stylesheet_link_tag "application", media: "all" %>
+    <%= stylesheet_link_tag "theme/cover", media: "all" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+
+    <%= render partial: "layouts/plugins" %>
+  </head>
+
+  <body id="devise-layout">
+
+   <%= yield(:tutorial) if content_for?(:tutorial) %>
+
+    <div class="site-wrapper">
+      <div class="site-wrapper-inner">
+        <div class="cover-container">
+          <div class="inner cover">
+            <img src="<%= image_path('lets-arrange-logo.png') %>" width="236" height="87" alt="Lets Arrange" class="logo"> Beta
+            <%= render 'layouts/messages' %>
+            <%= yield %>
+          </div>
+
+          <div class="mastfoot">
+            <p>&copy; Lets arrange 2014</p>
+          </div>
+
+          <%= render "layouts/footer" %>
+        </div>
+      </div>
+    </div>
+
+  </body>
+</html>

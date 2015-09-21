@@ -1,0 +1,13 @@
+<%= content_tag_for :div, email, class: "form-group" do %>
+  <div class="email-description">
+    <%= email.description %> (<%= email.humanized_status %>)
+  </div>
+
+  <div class="email-actions">
+    <%= verify_actions(email) do %>
+      <%= link_to('resend verification', contact_point_confirmation_path(contact_point: { description: email.email }), method: :post, remote: true) %>
+    <% end %>
+    <span class="divider">|</span>
+    <%= destroy_link(email) %>
+  </div>
+<% end %>

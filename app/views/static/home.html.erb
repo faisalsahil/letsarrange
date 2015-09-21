@@ -1,0 +1,22 @@
+<% provide(:title, 'Home') %>
+<% if signed_in? %>
+    <h3>Appointments</h3>
+<% else %>
+    <div class="jumbotron">
+      <div class="container">
+        <h1>Welcome!</h1>
+        <p>Make appointments with anyone </p>
+        <p><%= link_to "Learn more", about_path, class: "btn btn-primary btn-lg" %></p>
+
+        <p>
+          <div class="btn-group">
+            <%= link_to "Sign up", new_user_registration_path, class: "btn btn-success btn-lg" %>
+          </div>
+          <div class="btn-group">
+            <%= link_to "Sign in", new_user_session_path, class: "btn btn-warning btn-lg" %>
+          </div>
+        </p>
+
+      </div>
+    </div>
+<% end %>

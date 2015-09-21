@@ -1,0 +1,3 @@
+<% @contact_points.each do |cp| %>
+  ContactPointsController.add_phone('<%= j(render cp) %>', '<%= cp.short_type %>');
+<% end %>

@@ -1,0 +1,19 @@
+<div id="<%= dom_id(organization_user) %>">
+  <p>User Name: <%= organization_user.user.name %></p>
+  <p>User's display name: <%= organization_user.name %></p>
+  <p>Visibility: <%= organization_user.visibility %></p>
+  <p>Status: <%= organization_user.humanized_status %></p>
+  <p>
+    <%= link_to('edit', edit_organization_user_path(@organization, organization_user), class: 'btn btn-xs') %>
+    <% unless organization_user.user == current_user %>
+      <%= link_to('unlink', organization_user_path(@organization, organization_user), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-xs') %>
+      <%= link_to('set as trusted', trust_organization_user_path(@organization, organization_user), method: :patch, data: { confirm: 'Are you sure?' }, class: 'btn btn-xs') if organization_user.untrusted? %>
+    <% end %>
+    <% if @organization.default_user == organization_user.user %>
+      <span class="label label-primary">This is the default user for the Org</span>
+    <% else %>
+      <%= link_to('set default', set_default_organization_user_path(@organization, organization_user), method: :patch, class: 'btn btn-xs') %>
+    <% end %>
+  </p>
+</div>
+<br />

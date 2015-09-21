@@ -1,0 +1,11 @@
+<% provide(:title, 'Requests received') %>
+<%= content_for(:classes_for_container) { 'wide request-list' } %>
+<% content_for :navbar do %>
+  <h1 class="larger-header">Requests received</h1>
+<% end %>
+
+<div id="show_received_container">
+  <ul class="list-group stripped">
+    <%= render partial: 'line_item', collection: @line_items, locals: { use_full_title: true } %>
+  </ul>
+</div>

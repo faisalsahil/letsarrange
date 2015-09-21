@@ -1,0 +1,18 @@
+<% header_content('Edit organization') %>
+
+<% provide(:title, "Edit organization") %>
+
+<div id="edit_organization_container">
+  <%= simple_form_for @organization,
+                      html: { class:"devise_form" } do |f| %>
+
+
+    <%= f.error_notification %>
+
+    <%= render 'form', {f: f} %>
+
+    <div class="col-sm-12">
+      <%= f.button :submit, "Update", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>

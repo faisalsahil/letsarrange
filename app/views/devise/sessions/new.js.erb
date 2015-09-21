@@ -1,0 +1,3 @@
+$('#sign_in_form_container').html('<%= j(render 'devise/sessions/form', in_modal: @in_modal) %>');
+$('#sign_in_modal').modal('show');
+SignInManager.setup_sign_in_up_links();

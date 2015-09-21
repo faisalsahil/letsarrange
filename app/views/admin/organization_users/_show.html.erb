@@ -1,0 +1,25 @@
+<% header_content(@organization_user.name) %>
+
+<div id="show_org_resource" class="admin">
+  <h4>Details</h4>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Organization</th>
+        <th>Org ID</th>
+        <th>User name at this Org</th>
+        <th>User</th>
+        <th>User ID</th>
+        <th>Visibility</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render @organization_user %>
+    </tbody>
+  </table>
+
+  <hr/>
+
+  <p><%= link_to 'Back to Organization Users', admin_organization_users_path %></p>
+</div>

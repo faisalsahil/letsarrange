@@ -1,0 +1,54 @@
+<% header_content('Request') %>
+
+<div id="show_user" class="admin">
+  <% provide(:title, "Request") %>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Org. ID</th>
+        <th>Org. resource</th>
+        <th>Description</th>
+        <th>Location</th>
+        <th>Start by</th>
+        <th>Finish by</th>
+        <th>Time Zone</th>
+        <th>Length</th>
+        <th>Offer</th>
+        <th>Requestor</th>
+        <th>Reserved number</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+
+    <%= render partial: 'request', locals: { request: @request, view: :show} %>
+  </table>
+
+  <h4>Line Items</h4>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Org. ID</th>
+        <th>Resource ID</th>
+        <th>Description</th>
+        <th>Location</th>
+        <th>Start by</th>
+        <th>Finish by</th>
+        <th>Length</th>
+        <th>Offer</th>
+        <th>Responder</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+
+    <%= render partial: "admin/line_items/line_item", collection: @request.line_items.order(id: :desc) %>
+  </table>
+
+  <h4>Broadcasts</h4>
+  <%= render('admin/broadcasts/table', broadcasts: @request.broadcasts) %>
+
+  <div class="actions">
+    <%= link_to "Back", :back %>
+  </div>
+</div>

@@ -1,0 +1,15 @@
+<div id="<%= dom_id(organization_resource) %>">
+  <p>Resource Name: <%= organization_resource.resource.name %></p>
+  <p>Resource's display name: <%= organization_resource.name %></p>
+  <p>Visibility: <%= organization_resource.visibility %></p>
+  <p>
+    <%= link_to('edit', edit_organization_resource_path(@organization, organization_resource), class: 'btn btn-xs') %>
+    <%= link_to('unlink', organization_resource_path(@organization, organization_resource), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-xs') if organization_resource.can_be_unlinked_by?(current_user) && current_user.managed_org_resources.size > 1%>
+    <% if current_user.default_org_resource == organization_resource %>
+      <span class="label label-primary">Current default org-resource</span>
+    <% else %>
+    <%= link_to('set default', set_default_organization_resource_path(@organization, organization_resource), method: :patch, class: 'btn btn-xs') %>
+    <% end %>
+  </p>
+</div>
+<br />

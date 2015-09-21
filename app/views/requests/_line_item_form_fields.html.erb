@@ -1,0 +1,43 @@
+
+<div class="form-group">
+  <div class="col-xs-8">
+    <div class="row">
+      <%= render partial: "widgets/compound_date_picker", locals: {f: f, date_picker_id: dates_picker_id, length_picker_id: length_picker_id} %>
+    </div>
+  </div>
+
+  <div class="col-xs-4">
+    <label for="offer" class="control-label">Offering</label>
+    <div class="field_container">
+    <%= f.input :offer, as: :string, input_html: { autocapitalize: 'off', class: 'form-control offer', data: { must_confirm: true }}, placeholder: "e.g. $80", label: false  %>
+    </div>
+  </div>
+</div>
+
+
+<div class="form-group">
+  <div class="col-xs-6">
+    <label for="for" class="control-label">For what (optional)</label>
+    <div class="field_container">
+      <%= f.input :description, as: :string, label: false, input_html: { autocapitalize: "off", class: "form-control description"}, placeholder: "e.g. lesson" %>
+    </div>
+  </div>
+  <div class="col-xs-6">
+      <label for="at" class="control-label">At where (optional)</label>
+      <div class="field_container">
+      <%= f.input :location, as: :string, label: false, input_html: { autocapitalize: "off", class: "form-control location"}, placeholder: "e.g. the club" %>
+      </div>
+    </div>
+</div>
+
+
+<% unless defined? line_change %>
+  <div class="form-group">
+    <div class="col-xs-12">
+      <label for="comment" class="control-label">Add a note to send (optional)</label>
+      <div class="field_container">
+        <%= f.input :comment, as: :string, input_html: { autocapitalize: 'on', class: 'form-control comment'}, placeholder: "e.g. Let's work on my serve", label: false  %>
+      </div>
+    </div>
+  </div>
+<% end %>

@@ -1,0 +1,14 @@
+<% if @in_modal %>
+  $('#sign_in_modal').modal('hide');
+  if (!$('#new_request input[name="authenticity_token"]').length) $('#new_request').append('<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden" />');
+
+  $('#aux_modal .modal-content').html('<%= j(render 'common/phone_verification_form', voice: @voice, sms: @sms, in_modal: true) %>');
+  ContactPointsController.show_voice_verification_modal('<%= new_contact_point_voice_verification_path(@voice, for_modal: '1', without_refresh: '1') %>');
+  RequestOptionsPageManager.setup();
+<% elsif must_verify? %>
+  $('#sign_up_form_container').html('<%= j(render 'common/phone_verification_form', voice: @voice, sms: @sms) %>');
+  ContactPointsController.setup_verification_form('<%= new_contact_point_voice_verification_path(@voice) %>');
+  RequestOptionsPageManager.setup();
+<% else %>
+  window.location = '<%= new_request_path(success: t('devise.registrations.signed_up')) %>';
+<% end %>

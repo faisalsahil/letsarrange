@@ -1,0 +1,3 @@
+<% current_user.contact_points.find_each do |cp| %>
+  ContactPointsController.update_contact_point('<%= dom_id(cp) %>', '<%= j(render cp) %>');
+<% end %>

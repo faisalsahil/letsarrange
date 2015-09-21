@@ -1,0 +1,26 @@
+<% header_content("New resource") %>
+
+<% provide(:title, "New resource") %>
+
+<div id="new_organization_resource_container">
+  <%= simple_form_for [@organization,@org_resource],
+                      url: organization_resources_path(@organization),
+                      html: { class:"devise_form" } do |f| %>
+
+    <div class="form-group">
+      <label for="resource_name" class="col-xs-3 control-label">Resource Name</label>
+      <div class="col-xs-9">
+        <input type="text" id="resource_name" name="resource_name" class="form-control resource_name" placeholder="Or create a new one by typing the name">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-xs-9 col-xs-offset-3">
+        <%= submit_tag 'Add', class: 'btn btn-primary btn-block', id: 'btn-add-resource' %>
+      </div>
+      <div class="col-xs-9 col-xs-offset-3">
+        <%= link_to 'Cancel', organization_resources_path(@organization), class: 'btn btn-default btn-block' %>
+      </div>
+    </div>
+  <% end %>
+</div>

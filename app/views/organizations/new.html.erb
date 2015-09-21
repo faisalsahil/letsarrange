@@ -1,0 +1,18 @@
+<% header_content('New organization') %>
+
+<% provide(:title, "New organization") %>
+
+<div id="new_organization_container">
+  <%= simple_form_for @organization,
+                      url: organizations_path,
+                      html: { class:"devise_form" } do |f| %>
+
+    <%= f.error_notification %>
+
+    <%= render 'form', {f: f} %>
+
+    <div class="col-sm-12">
+      <%= f.button :submit, "Create", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>

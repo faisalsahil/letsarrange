@@ -1,0 +1,11 @@
+<% provide(:title, "Resources at #{@organization.name}") %>
+<% content_for :navbar do %>
+  <h1 class="larger-header">Resources at <%= @organization.name %></h1>
+<% end %>
+
+<div id="organization_resources">
+  <%= render partial: 'organization_resource', collection: @organization_resources %>
+
+  <%= link_to "Add new resource", new_organization_resource_path(@organization), class: "btn btn-success" %>
+  <%= link_to "Back to organizations", organizations_path, class: "btn btn-success" %>
+</div>

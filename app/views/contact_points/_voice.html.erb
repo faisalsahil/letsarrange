@@ -1,0 +1,13 @@
+<%= content_for(:actions, flush: true) do %>
+  <%= verify_actions(voice) do %>
+    <%= link_to('verify', show_modal_contact_point_voice_verification_path(voice), remote: true) %>
+  <% end %>
+  <span class="divider">|</span>
+  <%= destroy_link(voice) %>
+  <% if voice.can_clone_to_sms? %>
+    <span class="divider">|</span>
+    <%= link_to 'add as Text', contact_points_path, class: 'clone-link', data: { as: :sms, number: voice.number } %>
+  <% end %>
+<% end %>
+
+<%= render 'contact_points/phone', phone: voice %>

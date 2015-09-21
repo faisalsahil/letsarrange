@@ -1,0 +1,20 @@
+<tr>
+	<td><%= link_to line_item.requested_organization.uniqueid, admin_organization_path(line_item.requested_organization) %></td>
+	<td><%= link_to line_item.resource.uniqueid, admin_resource_path(line_item.resource) %></td>
+	<td><%= line_item.description %></td>
+  <td><%= line_item.location %></td>
+  <td><%= line_item.earliest_start ? Admin::DateTimeHelper.format(line_item.earliest_start_in_tmz, line_item.time_zone) : '-' %></td>
+  <td><%= line_item.finish_by ? Admin::DateTimeHelper.format(line_item.finish_by_in_tmz, line_item.time_zone) : '-' %></td>
+  <td><%= line_item.length %></td>
+  <td><%= line_item.offer %></td>
+  <td><%= link_to line_item.created_for.full_name, admin_organization_user_path(line_item.created_for) %></td>
+  <td><%= line_item.humanized_status %></td>
+
+  <% unless defined? view %>
+    <td>
+      <%= link_to "view", admin_request_line_item_path(line_item.request,line_item) %> |
+      <%= link_to "request", admin_request_path(line_item.request) %> |
+      <%= destroy_row(:request_line_item, line_item.request, line_item) %>
+    </td>
+  <% end %>
+</tr>

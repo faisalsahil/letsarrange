@@ -1,0 +1,8 @@
+var modal = $('#sign_in_modal');
+if (modal.length && modal.data('bs.modal').isShown) {
+  $('#sign_in_modal').modal('hide');
+  if (!$('#new_request input[name="authenticity_token"]').length) $('#new_request').append('<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden" />');
+
+  RequestOptionsPageManager.setup();
+}
+else window.location = '<%= after_sign_in_path_for(resource) %>';

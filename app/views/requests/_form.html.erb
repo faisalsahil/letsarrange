@@ -1,0 +1,17 @@
+<%= simple_form_for @request, html: { role: 'form', class: 'form' }, remote: true do |f|  %>
+
+  <!-- request_page 1: request form main page -->
+  <%= render_page(1, f) %>
+
+  <!-- request_page 2: recipients confirmed index page -->
+  <%= render_page(2) %>
+
+  <!-- request_page 4: recipient customizations page -->
+  <%= render_page(4) %>
+
+  <!-- request_page 5: privacy options page -->
+  <%= render_page(5, f) %>
+<% end %>
+
+<!-- request_page 3: recipients form page (add recipients by) -->
+<%= render_page(3) %>

@@ -1,0 +1,6 @@
+var broadcasts_list = $('#broadcasts_list');
+$('#<%= dom_id(@target_line_item) %>').replaceWith('<%= j(render @target_line_item)%>');
+<% @merged_broadcasts.each do |b| %>
+  $('#<%= dom_id(b) %>').remove();
+<% end %>
+if (!broadcasts_list.find('.broadcast').length) broadcasts_list.remove();

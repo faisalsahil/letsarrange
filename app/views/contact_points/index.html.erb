@@ -1,0 +1,31 @@
+<% provide(:title, 'Contact methods') %>
+<% content_for :navbar do %>
+  <h1 class="larger-header">Contact methods</h1>
+<% end %>
+
+<div id="contact_points">
+  <h4>Phone: Voice</h4>
+  <div class="row-fluid">
+    <div id="voices">
+      <%= render @voices %>
+    </div>
+  </div>
+
+  <h4>Phone: Text (SMS)</h4>
+  <div class="row-fluid">
+    <div id="smss">
+      <%= render @smss %>
+    </div>
+    <%= render 'contact_points/new_phone_fields' %>
+  </div>
+
+  <hr/>
+
+  <h4>Email</h4>
+  <div class="row-fluid">
+    <div id="emails">
+      <%= render @emails %>
+    </div>
+    <%= render 'contact_points/new_email_fields' %>
+  </div>
+</div>

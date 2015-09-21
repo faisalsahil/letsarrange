@@ -1,0 +1,57 @@
+.contact_point {
+  margin-bottom: 10px;
+}
+
+.inline-actions {
+  clear: both;
+}
+
+.phone-actions {
+  margin-top: 10px;
+  
+  .btn-link {
+    padding: 0;
+  }
+}
+
+.sms-verif-form {
+  display: inline-block;
+}
+
+.sms-code-input {
+  display: inline !important;
+  width: 75px !important;
+}
+
+.voice-verification-code {
+  font-size: 24px;
+  text-align: center;
+}
+
+.form-horizontal {
+  .field-with-checkbox {
+    padding-left: 0;
+  }
+  .field-checkbox {
+    padding-left: 0;
+    padding-right: 0;
+    font-size: 15px;
+  }
+}
+
+#phone_verification_container {
+  .sms_verification {
+    min-height: 100px;
+    margin-bottom: 10px;
+    input {
+      color: black !important;
+    }
+  }
+  .voice_verification {
+    min-height: 100px;
+  }
+}
+
+.form-horizontal .form-group.with-margin {
+  margin-left: 0;
+}

@@ -1,0 +1,40 @@
+<% header_content('Edit Organization user') %>
+
+<% provide(:title, "Edit Organization user") %>
+
+<div id="edit_organization_user_container">
+  <%= simple_form_for [@organization,@org_user],
+                      url: organization_user_path(@organization, @org_user),
+                      html: { class:"devise_form" } do |f| %>
+
+    <%= f.error_notification %>
+
+    <div class="form-group">
+      <label for="organization_user_name" class="col-sm-3 control-label">User's Display Name</label>
+      <div class="col-sm-9 field_container">
+        <%= f.input :name,
+                    label: false,
+                    required: false,
+                    input_html: { autocapitalize: "off", class: "form-control" },
+                    placeholder: "e.g. Zen Spa",
+                    autofocus: true %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="organization_user_visibility" class="col-sm-3 control-label">Visibility</label>
+      <div class="col-sm-9 field_container">
+        <%= f.input :visibility,
+                    label: false,
+                    required: false,
+                    input_html: { class: 'form-control' },
+                    collection: [['Public', 'public'], ['Private', 'private']],
+                    prompt: false %>
+      </div>
+    </div>
+
+    <div class="col-sm-12">
+      <%= f.button :submit, "Update", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>

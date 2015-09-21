@@ -1,0 +1,30 @@
+<% header_content('Line item') %>
+
+<div id="show_line_item" class="admin">
+  <%= link_to "View request", admin_request_path(@line_item.request) %>
+
+  <hr/>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Org. ID</th>
+        <th>Resource ID</th>
+        <th>Description</th>
+        <th>Location</th>
+        <th>Start by</th>
+        <th>Finish by</th>
+        <th>Length</th>
+        <th>Offer</th>
+        <th>Responder</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+
+    <%= render 'line_item', line_item: @line_item, view: :show %>
+  </table>
+  <br/>
+
+  <h4>Broadcasts</h4>
+  <%= render 'admin/broadcasts/table', broadcasts: @line_item.broadcasts.order(id: :desc) %>
+</div>

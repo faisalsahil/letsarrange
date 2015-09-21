@@ -1,0 +1,8 @@
+<%= content_tag_for :div, phone, class: "form-group" do %>
+  <div class="phone-description">
+    <%= phone.denormalized %> (<%= phone.humanized_status %>)
+  </div>
+  <div class="phone-actions">
+    <%= yield(:actions) %>
+  </div>
+<% end %>

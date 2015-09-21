@@ -1,0 +1,39 @@
+<div id="sign_up_form_container">
+  <%= simple_form_for(resource,
+                      as: resource_name,
+                      url: registration_path(resource_name),
+                      remote: true,
+                      html: { role: 'form', class: 'form-horizontal' }) do |f| %>
+    <%= f.input :in_modal, as: :hidden, input_html: { value: 1 } if @in_modal || local_assigns[:in_modal] %>
+
+    <%= conditional_tag(:div, local_assigns[:in_modal], class: 'modal-body') do %>
+      <div class="form-inputs error">
+        <%= render 'devise/registrations/required_fields', f: f %>
+        <%= render 'devise/shared/password', f: f %>
+        <%= render 'devise/registrations/phone_field', f: f, value: @phone, sms_capable: @sms_capable %>
+
+        <%= f.simple_fields_for :contact_information do |cp_builder| %>
+          <div class="form-group">
+            <div class="col-xs-12 field_container">
+              <%= cp_builder.input :email,
+                                   label: false,
+                                   required: false,
+                                   input_html: { type: 'email', class: 'form-control', value: @email },
+                                   placeholder: 'Email (e. g. jblack72@gmail.com)',
+                                   wrapper: false %>
+              <%= email_errors_on_sign_up(f.object) %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+    <%= conditional_tag(:div, local_assigns[:in_modal], class: 'modal-footer') do %>
+      <div class="form-actions">
+        <%= f.button :submit, "Sign up", class: "btn btn-lg btn-default btn-block" %>
+      </div>
+      <div class="signin-links">
+        <%= link_to 'Go to sign in', new_user_session_path(page: 2), id: 'back_from_signup', class: 'btn btn-primary btn-block' %>
+      </div>
+    <% end %>
+  <% end %>
+</div>

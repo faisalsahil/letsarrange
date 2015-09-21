@@ -1,0 +1,49 @@
+<% in_modal = local_assigns[:in_modal] %>
+
+<div id="phone_verification_container">
+  <% if in_modal %>
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      <h4 class="modal-title" id="myModalLabel">Phone verification</h4>
+    </div>
+  <% else %>
+    <h4>Phone verification</h4>
+  <% end %>
+
+  <%= conditional_tag(:div, in_modal, class: 'modal-body') do %>
+    <% if sms %>
+      <div class="sms_verification">
+        <p>Please enter the 6-digit verification code we sent to your phone</p>
+        <%= render 'sms_verifications/new', sms: sms, for_signup: true, success_url: in_modal ? nil : new_request_path %>
+      </div>
+    <% end %>
+
+    <div class="voice_verification">
+      <p>We need to call your phone to verify it</p>
+      <div class="voice-verification-code invisible" id="voice_verification_code">code</div>
+      <p class="invisible" id="voice_verification_countdown"></p>
+    </div>
+  <% end %>
+
+  <%= conditional_tag(:div, in_modal, class: 'modal-footer') do %>
+    <% if in_modal %>
+      <button type="button" class="btn btn-default" id="verify_cancel_button" data-dismiss="modal">Cancel</button>
+    <% else %>
+      <%= link_to 'Verify later', new_request_path, class: 'btn btn-default', id: 'verify_cancel_button' %>
+    <% end %>
+    <span class="sms_actions">
+      <a href="#" class="btn btn-default" id="verify_by_call">Call me instead</a>
+    </span>
+    <span class="voice_actions">
+      <% if sms %>
+        <a href="#" class="btn btn-default" id="verify_by_sms">Enter code instead</a>
+      <% end %>
+      <a href="#" class="btn btn-primary" id="verify_action" data-remote="true">Call me now</a>
+      <% if in_modal %>
+        <a href="#" class="btn btn-primary hidden" id="cancel_call" data-remote="true" data-method="delete" rel="nofollow">Close</a>
+      <% else %>
+        <%= link_to 'Continue', contact_point_voice_verification_path(voice), method: :delete, class: 'btn btn-primary hidden', id: 'cancel_call' %>
+      <% end %>
+    </span>
+  <% end %>
+</div>

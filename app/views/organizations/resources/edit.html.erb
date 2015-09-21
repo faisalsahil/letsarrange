@@ -1,0 +1,76 @@
+<% header_content('Edit resource') %>
+
+<% provide(:title, "Edit resource") %>
+
+<div id="edit_organization_resource_container">
+  <%= simple_form_for [@organization,@org_resource],
+                      url: organization_resource_path(@organization, @org_resource),
+                      html: { class:"devise_form" } do |f| %>
+
+    <%= f.error_notification %>
+
+    <div class="form-group">
+      <label for="organization_resource_name" class="col-sm-3 control-label">Resource's Display Name</label>
+      <div class="col-sm-9 field_container">
+        <%= f.input :name,
+                    label: false,
+                    required: false,
+                    input_html: { autocapitalize: "off", class: "form-control" },
+                    placeholder: "e.g. Zen Spa",
+                    autofocus: true %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="organization_resource_visibility" class="col-sm-3 control-label">Visibility</label>
+      <div class="col-sm-9 field_container">
+        <%= f.input :visibility,
+                    label: false,
+                    required: false,
+                    input_html: { class: 'form-control' },
+                    collection: [['Public', 'public'], ['Private', 'private']],
+                    prompt: false %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-sm-9 col-sm-offset-3">
+        <%= f.button :submit, "Update", class: "btn btn-primary btn-block" %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<div class="row">&nbsp;</div>
+<div class="row">&nbsp;</div>
+
+<h3>Link to another org</h3>
+<div id="link_organization_resource_container">
+
+  <%= simple_form_for [@organization,@org_resource],
+                      url: link_org_organization_resource_path(@organization, @org_resource),
+                      html: { class:"devise_form" } do |f| %>
+
+    <div class="form-group">
+      <label for="uniqueid" class="col-sm-3 control-label">Organization</label>
+      <div class="col-sm-9">
+        <input type="text" id="uniqueid" name="uniqueid" class="form-control organization_uniqueid" placeholder="Lookup organizations by uniqueid">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-sm-9 col-sm-offset-3">
+        <%= submit_tag 'Link', class: 'btn btn-primary btn-block', id: 'btn-add-resource' %>
+      </div>
+    </div>
+
+  <% end %>
+</div>
+
+<div class="row">&nbsp;</div>
+<div class="row">&nbsp;</div>
+<div class="row">&nbsp;</div>
+
+<div class="col-sm-9 col-sm-offset-3">
+  <%= link_to 'Cancel', organization_resources_path(@organization), class: 'btn btn-default btn-block' %>
+</div>

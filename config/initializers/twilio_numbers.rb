@@ -1,0 +1,1 @@
+TwilioNumber.load_twilio_numbers unless LetsArrange.rake?

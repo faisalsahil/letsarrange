@@ -1,0 +1,9 @@
+<% provide(:title, 'New request') %>
+<div id="new_request_container">
+	<%= render 'form' %>
+</div>
+
+<% content_for(:modal) do %>
+  <%= render 'devise/sessions/sign_in_modal' %>
+  <div class="modal fade" id="new_phone_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>
+<% end %>

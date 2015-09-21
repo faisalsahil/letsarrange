@@ -1,0 +1,23 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>Message type</th>
+      <th>From contact method</th>
+      <th>To contact method</th>
+      <th>To user</th>
+      <th>SID</th>
+      <% if local_assigns.has_key?(:show_broadcast_link) %>
+        <th>Actions</th>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
+    <% if local_assigns.has_key?(:broadcast) %>
+      <%= render partial: 'admin/broadcasts/message_type_item', collection: broadcast.sms_messages.order(:id), as: :message, locals: local_assigns %>
+      <%= render partial: 'admin/broadcasts/message_type_item', collection: broadcast.email_messages.order(:id), as: :message, locals: local_assigns %>
+    <% elsif local_assigns.has_key?(:contact_point) %>
+      <%= render partial: 'admin/broadcasts/message_type_item', collection: contact_point.sms_sent_and_received, as: :message, locals: local_assigns if contact_point.is_a?(ContactPoint::Sms) %>
+      <%= render partial: 'admin/broadcasts/message_type_item', collection: contact_point.emails_sent_and_received, as: :message, locals: local_assigns if contact_point.is_a?(ContactPoint::Email) %>
+    <% end %>
+  </tbody>
+</table>

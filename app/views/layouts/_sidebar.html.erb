@@ -1,0 +1,21 @@
+<% if current_user %>
+  <div class="snap-drawers">
+    <div class="snap-drawer snap-drawer-left">
+      <div>
+        <ul id="sidebar">
+          <li class="main-section"><a>Requests</a></li>
+          <li class="sub-section"><%= link_to 'New', new_request_path %></li>
+          <li class="sub-section"><%= link_to "Made", requests_path %></li>
+          <li class="sub-section"><%= link_to "Received", received_line_items_path %></li>
+          <li class="main-section"><%= link_to "Settings", edit_user_registration_path %></li>
+          <li class="main-section"><%= link_to 'Contact methods', contact_points_path %></li>
+          <li class="main-section"><%= link_to 'Organizations', organizations_path %></li>
+          <li class="main-section"><%= link_to "Sign out", destroy_user_session_path, method: "delete" %></li>
+          <% if current_user.try(:admin?) %>
+            <li class="main-section"><%= link_to "Admin", admin_root_path %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+<% end %>

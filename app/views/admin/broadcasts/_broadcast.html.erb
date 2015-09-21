@@ -1,0 +1,15 @@
+<tr>
+  <td><%= Admin::DateTimeHelper.format(broadcast.created_at_in_tmz, broadcast.time_zone) %></td>
+  <td>
+    <% if broadcast.author.persisted? %>
+      <%= link_to broadcast.author.uniqueid, admin_user_path(broadcast.author) %>
+    <% else %>
+      <%= broadcast.author.name %>
+    <% end %>
+  </td>
+  <td><%= broadcast.full_body %></td>
+  <td>
+    <%= link_to 'view', admin_broadcast_path(broadcast) %> |
+    <%= destroy_row(:broadcast, broadcast) %>
+  </td>
+</tr>

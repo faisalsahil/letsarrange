@@ -1,0 +1,30 @@
+<% provide(:title, 'View request') %>
+<% header_content('View request') %>
+
+<%= content_for(:classes_for_container) { 'wide request-list' } %>
+
+<div class="request-summary">
+  <p><%= @request.title %></p>
+  <p class="request-info">
+    <span class="gmt"><%= TimeZoneHelper.format @request.time_zone %></span> 
+    <span class="pull-right">Request status: <span class="status"><%= @request.humanized_status %></span></span>
+  </p>
+</div>
+
+<ul class="list-group stripped">
+  <%= render @line_items %>
+</ul>
+
+<% broadcasts = @request.broadcasts.presence %>
+<% if broadcasts %>
+  <div class="col-xs-12" id="broadcasts_list">
+    <h4>Broadcasts</h4>
+    <ul class="list">
+      <%= render partial: 'broadcasts/broadcast', collection: broadcasts, locals: { transfer_options: @request.line_items } %>
+    </ul>
+  </div>
+<% end %>
+
+<div>
+  <%= link_to 'Close request', request_close_path(@request), method: :patch, class: 'btn btn-primary btn-block', data: { confirm: 'Are you sure?' } unless @request.closed? %>
+</div>

@@ -1,0 +1,21 @@
+<tr>
+	<td><%= link_to request.organization.uniqueid, admin_organization_path(request.organization) %></td>
+  <td><%= link_to request.organization_resource.name, admin_organization_resource_path(request.organization_resource) %></td>
+	<td><%= request.description %></td>
+  <td><%= request.location %></td>
+  <td><%= request.earliest_start ? Admin::DateTimeHelper.format(request.earliest_start_in_tmz, request.time_zone) : '-' %></td>
+  <td><%= request.finish_by ? Admin::DateTimeHelper.format(request.finish_by_in_tmz, request.time_zone) : '-' %></td>
+  <td><%= request.time_zone %></td>
+  <td><%= request.length %></td>
+  <td><%= request.offer %></td>
+  <td><%= link_to request.created_by.full_name, admin_organization_user_path(request.created_by) %></td>
+  <td><%= link_to(request.reserved_number, admin_twilio_number_path(request.reserved_number)) if request.reserved_number %></td>
+  <td><%= request.humanized_status %></td>
+
+  <% unless defined? view %>
+    <td>
+      <%= link_to 'view', admin_request_path(request) %> |
+      <%= link_to 'delete', admin_request_path(request), method: :delete, data: { confirm: 'Are you sure?' } %>
+    </td>
+  <% end %>
+</tr>
